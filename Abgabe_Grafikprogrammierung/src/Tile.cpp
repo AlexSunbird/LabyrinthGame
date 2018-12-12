@@ -3,7 +3,21 @@
 
 void Tile::draw()
 {
-	
+	up = nullptr;
+	down = nullptr;
+	left = nullptr;
+	right = nullptr; 
+
+
+	if (up == nullptr)
+	{
+
+	}
+	//TODO 1 tile 9x9, dann ground rauszeichnen/draufzeichnen oder 9x9 ground und dann wänder drüber zeichnen
+	//if (this.north == null)
+	//{
+	//	line(this.absPosX, this.absPosY, this.absPosX + offset, this.absPosY);
+	//}
 }
 
 Tile::Tile(int _posX, int _posY)
