@@ -1,5 +1,5 @@
 #pragma once
-#include <vector>
+#include <vector>		//for vector
 
 template<typename T>
 class GridTiles
@@ -14,6 +14,7 @@ public:
 	T&Ref(unsigned int x, unsigned int y);
 	unsigned int Width() const;
 	unsigned int Height() const;
+	bool isEmpty();
 private:
 	unsigned int W;
 	size_t Linearize(unsigned int x, unsigned int y) const;
@@ -50,12 +51,14 @@ void GridTiles<T>::Set(unsigned int x, unsigned int y, const T &Value)
 	Data[Linearize(x, y)] = Value;
 }
 
+
 template<typename T>
 T GridTiles<T>::Get(unsigned int x, unsigned int y) const
 {
 	return Data[Linearize(x, y)];
 }
 
+//Referenz kann man nicht ändern
 template<typename T>
 const T&GridTiles<T>::Ref(unsigned int x, unsigned int y) const
 {
@@ -78,4 +81,10 @@ template<typename T>
 unsigned int GridTiles<T>::Height() const
 {
 	return (unsigned int)(Data.size() / (size_t)W);
+}
+
+template<typename T>
+bool GridTiles<T>::isEmpty()
+{
+	return Data.empty();
 }

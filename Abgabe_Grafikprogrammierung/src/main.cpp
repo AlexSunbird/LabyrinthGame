@@ -1,14 +1,11 @@
-#include "SDL.h"
-#include "Player.h"
-#include "Labyrinth.h"
-#include "Config.h"
+#include "SDL.h"			
+#include "Player.h"			
+#include "Labyrinth.h"		
+#include "Config.h"			
 
-#include <stdio.h>
-#include <time.h>
-#include <iostream>
-#include <vector>
-#include <utility>
-#include <algorithm>
+#include <time.h>			//for time
+#include <iostream>			//for cout
+#include <vector>			//for vector
 
 int iPlayerPosX, iPlayerPosY;
 int randomPos;

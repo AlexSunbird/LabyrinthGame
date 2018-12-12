@@ -1,12 +1,11 @@
 #include "SDL.h"		//for Colour
-#include "Array2d.h"
+#include "Array2d.h"	//for GridTiles
 
 class Labyrinth
 {
 public:
 	Uint32 ColourLabyrinth;
 	int RandomNum();
-	
 
 	enum EDirections {
 		UP,

@@ -1,6 +1,13 @@
-#include "Player.h"
-#include "Config.h"
+#include "Player.h"		//for Player
+#include "Config.h"		//for fix Colours
 
+Player::Player(int _fPlayerX, int _fPlayerY)
+{
+	m_iPlayerPosX = _fPlayerX;
+	m_iPlayerPosY = _fPlayerY;
+	ColourBody = COLOUR_BODY;
+	ColourFace = COLOUR_FACE;
+}
 
 void Player::CreatePlayer(SDL_Window *Window)
 {
