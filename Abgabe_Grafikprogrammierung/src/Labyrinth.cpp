@@ -1,4 +1,6 @@
 #include "Labyrinth.h"
+#include "Config.h"
+
 #include <vector>
 #include <time.h>
 #include <iostream>
@@ -25,7 +27,7 @@ void Labyrinth::RenderLabyrinth(int _x, int _y, SDL_Window *Window)
 			WallTile.y = j * _y;
 			WallTile.w = _x;
 			WallTile.h = _y;
-			ColourLabyrinth = 0xBD2136;
+			ColourLabyrinth = COLOUR_WALL;
 			if (myLab.Get(i, j) < 1)
 			{
 				SDL_FillRect(SDL_GetWindowSurface(Window), &WallTile, ColourLabyrinth);
@@ -37,4 +39,33 @@ int Labyrinth::RandomNum()
 {
 	int randomval = rand() % 2;
 	return randomval;
+}
+
+
+int Labyrinth::GetDirectionX(EDirections direction)
+{
+	switch (direction) {
+	case LEFT:
+		return 0;
+		break;
+	case RIGHT:
+		return 1;
+		break;
+	default:
+		break;
+	}
+}
+
+int Labyrinth::GetDirectionY(EDirections direction)
+{
+	switch (direction) {
+	case UP:
+		return 0;
+		break;
+	case DOWN:
+		return 1;
+		break;
+	default:
+		break;
+	}
 }

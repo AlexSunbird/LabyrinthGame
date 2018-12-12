@@ -1,5 +1,6 @@
 #include "SDL.h"		//for Colour
 #include "Array2d.h"
+#include "Config.h"
 //#include"Labyrinth.h"
 
 class Player 
@@ -14,8 +15,8 @@ public:
 	{
 		m_iPlayerPosX = _fPlayerX;
 		m_iPlayerPosY = _fPlayerY;
-		ColourBody = 0x2E8585;
-		ColourFace = 0x7A0011;
+		ColourBody = COLOUR_BODY;
+		ColourFace = COLOUR_FACE;
 	}
 
 	void CreatePlayer(SDL_Window *Window);

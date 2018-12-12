@@ -83,7 +83,7 @@ int main(int, char **)
 
 			}
 		}
-		SDL_FillRect(SDL_GetWindowSurface(Window), 0, 0xC79723);
+		SDL_FillRect(SDL_GetWindowSurface(Window), 0, COLOUR_BACKGROUND);
 		myLabyrinth.RenderLabyrinth(TILESIZE, TILESIZE, Window);
 		if (!(CheckIfPlayerOnGround(Wall, myPlayer)))
 		{

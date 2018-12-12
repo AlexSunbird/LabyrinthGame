@@ -33,10 +33,10 @@ void Player::CreatePlayer(SDL_Window *Window)
 	PlayerEyeRight.h = 5;
 
 
-	SDL_FillRect(SDL_GetWindowSurface(Window), &PlayerBody, ColourBody);
-	SDL_FillRect(SDL_GetWindowSurface(Window), &PlayerHead, ColourBody);
-	SDL_FillRect(SDL_GetWindowSurface(Window), &PlayerEyeLeft, ColourFace);
-	SDL_FillRect(SDL_GetWindowSurface(Window), &PlayerEyeRight, ColourFace);
+	SDL_FillRect(SDL_GetWindowSurface(Window), &PlayerBody, COLOUR_BODY);
+	SDL_FillRect(SDL_GetWindowSurface(Window), &PlayerHead, COLOUR_BODY);
+	SDL_FillRect(SDL_GetWindowSurface(Window), &PlayerEyeLeft, COLOUR_FACE);
+	SDL_FillRect(SDL_GetWindowSurface(Window), &PlayerEyeRight, COLOUR_FACE);
 
 }
 

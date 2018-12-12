@@ -6,6 +6,17 @@ class Labyrinth
 public:
 	Uint32 ColourLabyrinth;
 	int RandomNum();
+	
+
+	enum EDirections {
+		UP,
+		DOWN,
+		LEFT,
+		RIGHT
+	};
+
+	int GetDirectionX(EDirections direction);
+	int GetDirectionY(EDirections direction);
 
 	GridTiles<int> myLab;
 
