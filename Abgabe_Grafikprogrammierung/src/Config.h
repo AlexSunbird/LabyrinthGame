@@ -1,5 +1,5 @@
 //Define Grid Tiles
-#define GRIDSIZE 60
+#define GRIDSIZE 45
 #define TILESIZE 16
 #define SCREENSIZE GRIDSIZE*TILESIZE
 

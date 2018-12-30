@@ -8,8 +8,8 @@ public:
 	Tile * left;
 	Tile * right;
 	
-	int posX;
-	int posY;
+	int gridPosX;
+	int gridPosY;
 	int absPosX;
 	int absPosY;
 
