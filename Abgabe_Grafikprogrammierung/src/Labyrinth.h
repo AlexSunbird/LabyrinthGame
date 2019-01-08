@@ -1,3 +1,4 @@
+#pragma once
 #include "SDL.h"		//for Colour
 #include "Array2d.h"	//for GridTiles
 
