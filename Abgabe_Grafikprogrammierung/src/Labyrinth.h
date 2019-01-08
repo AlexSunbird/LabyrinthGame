@@ -1,6 +1,7 @@
 #pragma once
 #include "SDL.h"		//for Colour
 #include "Array2d.h"	//for GridTiles
+#include "Tile.h"
 
 class Labyrinth
 {
@@ -18,7 +19,7 @@ public:
 	int GetDirectionX(EDirections direction);
 	int GetDirectionY(EDirections direction);
 
-	GridTiles<int> myLab;
+	GridTiles<Tile> myLab;
 
 	void GenerateLabyrinth(int _xSize, int _ySize, SDL_Window *Window);
 	void RenderLabyrinth(int _xPos, int _yPos, SDL_Window *Window);

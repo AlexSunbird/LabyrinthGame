@@ -7,9 +7,7 @@ void Tile::draw(SDL_Window *Window)
 	down = nullptr;
 	left = nullptr;
 	right = nullptr;
-	
 
-	
 	if (up == nullptr)
 	{
 		CreateTile(UpTile, Window);
