@@ -16,6 +16,8 @@ public:
 		RIGHT
 	};
 
+	bool TileIsVisited(std::vector<std::pair<int, int>> _vectorOfTiles, std::pair<int, int> _pairToCheck);
+
 	int GetDirectionX(EDirections direction);
 	int GetDirectionY(EDirections direction);
 
