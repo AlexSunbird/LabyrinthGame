@@ -11,12 +11,7 @@ Player::Player(int _fPlayerX, int _fPlayerY)
 
 void Player::CreatePlayer(SDL_Window *Window)
 {
-	//BodyParts
-	SDL_Rect PlayerBody;
-	SDL_Rect PlayerHead;
-	SDL_Rect PlayerEyeLeft;
-	SDL_Rect PlayerEyeRight;
-
+	
 	//Body
 	PlayerBody.x = m_iPlayerPosX + 4;
 	PlayerBody.y = m_iPlayerPosY;

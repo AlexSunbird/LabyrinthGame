@@ -17,12 +17,12 @@ bool CheckIfPlayerOnGround(std::vector<std::pair<int, int>>& _wall, Player& _pla
 
 	if (it == _wall.end())
 	{
-		std::cout << "Player on Ground" << "\n";
+		//std::cout << "Player on Ground" << "\n";
 		return true;
 	}
 	else
 	{
-		std::cout << "Player on Wall" << "\n";
+		//std::cout << "Player on Wall" << "\n";
 		return false;
 	}
 }
