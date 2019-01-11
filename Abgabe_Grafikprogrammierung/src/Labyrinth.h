@@ -16,13 +16,14 @@ public:
 		RIGHT
 	};
 
-	bool TileIsVisited(std::vector<std::pair<int, int>> _vectorOfTiles, std::pair<int, int> _pairToCheck);
+	int GetDirectionX(EDirections _direction);
+	int GetDirectionY(EDirections _direction);
 
-	int GetDirectionX(EDirections direction);
-	int GetDirectionY(EDirections direction);
+	EDirections GetOppositeDirection(EDirections _direction);
 
-	GridTiles<Tile> myLab;
+	GridTiles<Tile*> myLab;
 
 	void GenerateLabyrinth(int _xSize, int _ySize, SDL_Window *Window);
 	void RenderLabyrinth(int _xPos, int _yPos, SDL_Window *Window);
+	void Carve(Tile* _source, Tile* _target, EDirections _direction);
 };

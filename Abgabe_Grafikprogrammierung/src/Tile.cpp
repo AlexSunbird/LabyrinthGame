@@ -50,11 +50,13 @@ void Tile::draw(SDL_Window *Window)
 
 }
 
-Tile::Tile(int _posX, int _posY) : 
+Tile::Tile(int _posX, int _posY) :
 	gridPosX(_posX),
 	gridPosY(_posY),
 	absPosX(_posX * TILESIZE),
-	absPosY(_posY * TILESIZE)
+	absPosY(_posY * TILESIZE),
+	visited(false),
+	changed(false)
 {
 }
 
@@ -67,3 +69,4 @@ void Tile::CreateTile(SDL_Rect _Tile, SDL_Window *Window)
 
 	SDL_FillRect(SDL_GetWindowSurface(Window), &_Tile, COLOUR_BACKGROUND);
 }
+
