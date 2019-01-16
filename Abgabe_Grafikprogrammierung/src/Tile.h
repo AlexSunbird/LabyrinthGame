@@ -11,6 +11,7 @@ public:
 	Tile * down;
 	Tile * left;
 	Tile * right;
+	Tile * invalid; 
 	
 	int gridPosX;
 	int gridPosY;

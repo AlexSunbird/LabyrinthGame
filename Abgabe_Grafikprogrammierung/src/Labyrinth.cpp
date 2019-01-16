@@ -98,6 +98,7 @@ int Labyrinth::GetDirectionX(EDirections _direction)
 		return 1;
 		break;
 	default:
+		return NULL;
 		break;
 	}
 }
@@ -112,6 +113,7 @@ int Labyrinth::GetDirectionY(EDirections _direction)
 		return -1;
 		break;
 	default:
+		return NULL;
 		break;
 	}
 }
@@ -133,6 +135,7 @@ EDirections Labyrinth::GetOppositeDirection(EDirections _direction)
 		return LEFT;
 		break;
 	default:
+		return INVALID;
 		break;
 	}
 }

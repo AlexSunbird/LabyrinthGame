@@ -6,6 +6,7 @@ void Tile::draw(SDL_Window *Window)
 	down = nullptr;
 	left = nullptr;
 	right = nullptr;
+	invalid = nullptr;
 
 	if (up == nullptr)
 	{
@@ -107,6 +108,6 @@ Tile Tile::getDirection(EDirections _direction)
 		return *this->right;
 		break;
 	default:
-		break;
+		return *this->invalid;
 	}
 }

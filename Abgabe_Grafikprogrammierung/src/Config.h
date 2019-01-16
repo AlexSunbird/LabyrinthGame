@@ -17,6 +17,7 @@ namespace Directions
 		UP,
 		DOWN,
 		LEFT,
-		RIGHT
+		RIGHT,
+		INVALID
 	};
 }
