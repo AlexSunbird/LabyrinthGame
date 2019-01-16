@@ -56,11 +56,6 @@ void Labyrinth::GenerateLabyrinth(int _x, int _y, SDL_Window *Window)
 			}
 		}
 	}
-	//for (int i = 0; i < _x; i++)
-	//	for (int j = 0; j < _y; j++)
-	//	{
-	//		myLab.Set(i, j, RandomNum());
-	//	}
 }
 
 void Labyrinth::RenderLabyrinth(int _x, int _y, SDL_Window *Window)

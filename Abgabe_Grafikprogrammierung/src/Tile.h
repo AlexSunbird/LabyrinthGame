@@ -26,6 +26,8 @@ public:
 	Tile(int _posX, int _posY);
 	bool visited;
 	bool changed;
+	bool isStart;
+	bool isEnd;
 
 	void CreateTile(SDL_Rect _Tile, SDL_Window *Window);
 	void draw(SDL_Window *Window);

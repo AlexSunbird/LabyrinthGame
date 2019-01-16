@@ -2,6 +2,9 @@
 
 void Tile::draw(SDL_Window *Window)
 {
+	isStart = false;
+	isEnd = false;
+
 	up = nullptr;
 	down = nullptr;
 	left = nullptr;
@@ -18,7 +21,7 @@ void Tile::draw(SDL_Window *Window)
 		UpWall.w = TILESIZE * 2;
 	}
 
-	if (down == nullptr)
+	if (down == nullptr && !this->isEnd)
 	{
 		CreateTile(DownTile, Window);
 		SDL_Rect DownWall;
@@ -28,7 +31,7 @@ void Tile::draw(SDL_Window *Window)
 		DownWall.w = TILESIZE * 2;
 	}
 
-	if (left == nullptr)
+	if (left == nullptr && !this->isStart)
 	{
 		CreateTile(LeftTile, Window);
 		SDL_Rect LeftWall;
