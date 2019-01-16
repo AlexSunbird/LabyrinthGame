@@ -1,5 +1,4 @@
-#include "Tile.h"		
-#include "Config.h"		//for Tilesize
+#include "Tile.h"	
 
 void Tile::draw(SDL_Window *Window)
 {
@@ -70,3 +69,44 @@ void Tile::CreateTile(SDL_Rect _Tile, SDL_Window *Window)
 	SDL_FillRect(SDL_GetWindowSurface(Window), &_Tile, COLOUR_BACKGROUND);
 }
 
+//sets direction to go to from current Tile
+void Tile::setDirection(EDirections _direction, Tile* _tile)
+{
+	switch (_direction) {
+	case DOWN:
+		this->down = _tile;
+		break;
+	case UP:
+		this->up = _tile;
+		break;
+	case LEFT:
+		this->left = _tile;
+		break;
+	case RIGHT:
+		this->right = _tile;
+		break;
+	default:
+		break;
+	}
+}
+
+//gets directin to go to from current tile
+Tile Tile::getDirection(EDirections _direction)
+{
+	switch (_direction) {
+	case DOWN:
+		return *this->down;
+		break;
+	case UP:
+		return *this->up;
+		break;
+	case LEFT:
+		return *this->left;
+		break;
+	case RIGHT:
+		return *this->right;
+		break;
+	default:
+		break;
+	}
+}

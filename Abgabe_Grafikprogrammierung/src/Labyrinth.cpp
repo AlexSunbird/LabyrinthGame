@@ -1,17 +1,12 @@
 #include "Labyrinth.h"
-#include "Config.h"
 #include <algorithm>			//std::find
 #include <iostream>				//for cout
 
 
-
 void Labyrinth::GenerateLabyrinth(int _x, int _y, SDL_Window *Window)
 {
-	//funktion die für jedes gridtile nachbarn zur�ckgibt(kooridinaten)
-	//jedem tile muss random richtung zugeordnet werden
-
 	myLab = GridTiles<Tile*>(_x, _y);
-	//grid mit tiles füllen(absPos) dann pairs durch tiles ersetzen
+	
 	for(int i = 0; i <= GRIDSIZE; i++)
 		for (int j = 0; j <= GRIDSIZE; j++)
 		{
@@ -53,7 +48,11 @@ void Labyrinth::GenerateLabyrinth(int _x, int _y, SDL_Window *Window)
 			if (nextTile != nullptr)
 			{
 				todo.push_back(nextTile);
-				//Carve
+				Carve(currentTile, nextTile, randomDirection);
+			}
+			else
+			{
+				todo.pop_back();
 			}
 		}
 	}
@@ -118,7 +117,7 @@ int Labyrinth::GetDirectionY(EDirections _direction)
 }
 
 
-Labyrinth::EDirections Labyrinth::GetOppositeDirection(EDirections _direction)
+EDirections Labyrinth::GetOppositeDirection(EDirections _direction)
 {
 	switch (_direction) {
 	case DOWN:
@@ -138,8 +137,11 @@ Labyrinth::EDirections Labyrinth::GetOppositeDirection(EDirections _direction)
 	}
 }
 
+
 void Labyrinth::Carve(Tile* _source, Tile* _target, EDirections _direction)
 {
-	//TODO
+	_source->setDirection(_direction, _target);
+	_target->setDirection(GetOppositeDirection(_direction), _source);
+	_source->changed = true; 
+	_target->changed = true; 
 }
-	

@@ -1,7 +1,10 @@
 #pragma once
 #include <SDL.h>
+#include "Config.h"		//for Tilesize and Directoins
 
-class Tile
+using namespace Directions;
+
+class Tile 
 {
 public:
 	Tile * up;
@@ -26,6 +29,7 @@ public:
 	void CreateTile(SDL_Rect _Tile, SDL_Window *Window);
 	void draw(SDL_Window *Window);
 
-	//TODO: public void setDirection(Direction dir, Node node)
-	//TODO: public Node getDirection(Direction dir)
+	void setDirection(EDirections _direction, Tile* _tile);
+	Tile getDirection(EDirections _direction);
+
 };
