@@ -9,6 +9,10 @@ Player::Player(int _fPlayerX, int _fPlayerY)
 	ColourFace = COLOUR_FACE;
 }
 
+Player::~Player()
+{
+}
+
 void Player::CreatePlayer(SDL_Window *Window)
 {
 	
@@ -41,7 +45,6 @@ void Player::CreatePlayer(SDL_Window *Window)
 	SDL_FillRect(SDL_GetWindowSurface(Window), &PlayerEyeRight, COLOUR_FACE);
 
 }
-
 
 void Player::MovePlayer(SDL_Event _Movement)
 {

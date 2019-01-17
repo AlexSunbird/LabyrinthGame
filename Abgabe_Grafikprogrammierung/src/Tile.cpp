@@ -1,5 +1,29 @@
 #include "Tile.h"	
 
+Tile::Tile(int _posX, int _posY) :
+	gridPosX(_posX),
+	gridPosY(_posY),
+	absPosX(_posX * TILESIZE),
+	absPosY(_posY * TILESIZE),
+	visited(false),
+	changed(false)
+{
+}
+
+Tile::~Tile()
+{
+}
+
+void Tile::CreateTile(SDL_Rect _Tile, SDL_Window *Window)
+{
+	_Tile.x = absPosX;
+	_Tile.y = absPosY;
+	_Tile.h = TILESIZE * 1.5;
+	_Tile.w = TILESIZE * 1.5;
+
+	SDL_FillRect(SDL_GetWindowSurface(Window), &_Tile, COLOUR_BACKGROUND);
+}
+
 void Tile::draw(SDL_Window *Window)
 {
 	isStart = false;
@@ -51,26 +75,6 @@ void Tile::draw(SDL_Window *Window)
 		RightWall.w = TILESIZE * 0.5;
 	}
 
-}
-
-Tile::Tile(int _posX, int _posY) :
-	gridPosX(_posX),
-	gridPosY(_posY),
-	absPosX(_posX * TILESIZE),
-	absPosY(_posY * TILESIZE),
-	visited(false),
-	changed(false)
-{
-}
-
-void Tile::CreateTile(SDL_Rect _Tile, SDL_Window *Window)
-{
-	_Tile.x = absPosX;
-	_Tile.y = absPosY;
-	_Tile.h = TILESIZE * 1.5;
-	_Tile.w = TILESIZE * 1.5;
-
-	SDL_FillRect(SDL_GetWindowSurface(Window), &_Tile, COLOUR_BACKGROUND);
 }
 
 //sets direction to go to from current Tile

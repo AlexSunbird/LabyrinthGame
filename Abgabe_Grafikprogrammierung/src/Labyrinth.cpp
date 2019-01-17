@@ -2,6 +2,13 @@
 #include <algorithm>			//std::find
 #include <iostream>				//for cout
 
+Labyrinth::Labyrinth()
+{
+}
+
+Labyrinth::~Labyrinth()
+{
+}
 
 void Labyrinth::GenerateLabyrinth(int _x, int _y, SDL_Window *Window)
 {
@@ -60,9 +67,10 @@ void Labyrinth::GenerateLabyrinth(int _x, int _y, SDL_Window *Window)
 
 void Labyrinth::RenderLabyrinth(int _x, int _y, SDL_Window *Window)
 {
-	//for (int i = 0; i < myLab.Width(); i++)
-	//	for (int j = 0; j < myLab.Height(); j++)
-	//	{
+	for (int i = 0; i < myLab.Width(); i++)
+		for (int j = 0; j < myLab.Height(); j++)
+		{
+
 	//		SDL_Rect WallTile;
 	//		WallTile.x = i * _x;
 	//		WallTile.y = j * _y;
@@ -73,15 +81,16 @@ void Labyrinth::RenderLabyrinth(int _x, int _y, SDL_Window *Window)
 	//		{
 	//			SDL_FillRect(SDL_GetWindowSurface(Window), &WallTile, ColourLabyrinth);
 	//		}
-	//	}
+		}
 }
 
-int Labyrinth::RandomNum()
+void Labyrinth::Carve(Tile* _source, Tile* _target, EDirections _direction)
 {
-	int randomval = rand() % 2;
-	return randomval;
+	_source->setDirection(_direction, _target);
+	_target->setDirection(GetOppositeDirection(_direction), _source);
+	_source->changed = true;
+	_target->changed = true;
 }
-
 
 int Labyrinth::GetDirectionX(EDirections _direction)
 {
@@ -113,7 +122,6 @@ int Labyrinth::GetDirectionY(EDirections _direction)
 	}
 }
 
-
 EDirections Labyrinth::GetOppositeDirection(EDirections _direction)
 {
 	switch (_direction) {
@@ -135,11 +143,8 @@ EDirections Labyrinth::GetOppositeDirection(EDirections _direction)
 	}
 }
 
-
-void Labyrinth::Carve(Tile* _source, Tile* _target, EDirections _direction)
+int Labyrinth::RandomNum()
 {
-	_source->setDirection(_direction, _target);
-	_target->setDirection(GetOppositeDirection(_direction), _source);
-	_source->changed = true; 
-	_target->changed = true; 
+	int randomval = rand() % 2;
+	return randomval;
 }
