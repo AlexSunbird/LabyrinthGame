@@ -1,7 +1,6 @@
 #include "SDL.h"			
 #include "Player.h"			
 #include "Labyrinth.h"		
-#include "Config.h"			
 
 #include <time.h>			//for time
 #include <iostream>			//for cout
@@ -10,6 +9,7 @@
 int iPlayerPosX, iPlayerPosY;
 int randomPos;
 
+/* 
 bool CheckIfPlayerOnGround(std::vector<std::pair<int, int>>& _wall, Player& _player)
 {
 	std::pair<int, int> PlayerPosPair(_player.m_iPlayerPosX / TILESIZE, _player.m_iPlayerPosY/ TILESIZE);
@@ -26,6 +26,8 @@ bool CheckIfPlayerOnGround(std::vector<std::pair<int, int>>& _wall, Player& _pla
 		return false;
 	}
 }
+*/
+
 
 int main(int, char **)
 {
@@ -37,6 +39,7 @@ int main(int, char **)
 	myLabyrinth.GenerateLabyrinth(GRIDSIZE, GRIDSIZE, Window);
 
 	//Get Labyrinth's Path and Wall
+	/*
 	std::vector<std::pair<int, int>> Ground;
 	std::vector<std::pair<int, int>> Wall;
 	for (int i = 0; i < myLabyrinth.myLab.Width(); i++)
@@ -51,12 +54,13 @@ int main(int, char **)
 				Wall.push_back(std::pair<int, int>(i, j));
 			}
 		}
+	*/
 
 	//Random Player Start Position
 	srand(time(NULL));
-	randomPos = rand() % Ground.size() + 0;
-	iPlayerPosX = Ground[randomPos].first * TILESIZE;
-	iPlayerPosY = Ground[randomPos].second * TILESIZE;
+	//randomPos = rand() % Ground.size() + 0;
+	//iPlayerPosX = Ground[randomPos].first * TILESIZE;
+	//iPlayerPosY = Ground[randomPos].second * TILESIZE;
 	Player myPlayer(iPlayerPosX, iPlayerPosY);
 
 	//GAME LOOP//
@@ -82,11 +86,11 @@ int main(int, char **)
 		}
 		SDL_FillRect(SDL_GetWindowSurface(Window), 0, COLOUR_BACKGROUND);
 		myLabyrinth.RenderLabyrinth(TILESIZE, TILESIZE, Window);
-		if (!(CheckIfPlayerOnGround(Wall, myPlayer)))
-		{
-			myPlayer.m_iPlayerPosX = lastPlayerX;
-			myPlayer.m_iPlayerPosY = lastPlayerY;
-		}
+		//if (!(CheckIfPlayerOnGround(Wall, myPlayer)))
+		//{
+		//	myPlayer.m_iPlayerPosX = lastPlayerX;
+		//	myPlayer.m_iPlayerPosY = lastPlayerY;
+		//}
 		myPlayer.CreatePlayer(Window);
 		SDL_UpdateWindowSurface(Window);
 	}

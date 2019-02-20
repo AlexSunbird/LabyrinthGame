@@ -1,66 +1,76 @@
 #include "Labyrinth.h"
-#include "Config.h"
 #include <algorithm>			//std::find
 #include <iostream>				//for cout
 
+Labyrinth::Labyrinth()
+{
+}
 
+Labyrinth::~Labyrinth()
+{
+}
 
 void Labyrinth::GenerateLabyrinth(int _x, int _y, SDL_Window *Window)
 {
-	//funktion die für jedes gridtile nachbarn zurückgibt(kooridinaten)
-	//jedem tile muss random richtung zugeordnet werden
+	myLab = GridTiles<Tile*>(_x, _y);
+	
+	for(int i = 0; i <= GRIDSIZE; i++)
+		for (int j = 0; j <= GRIDSIZE; j++)
+		{
+			myLab.Ref(i, j)->gridPosX = i;
+			myLab.Ref(i, j)->gridPosY = j;
+		}
 
-	myLab = GridTiles<Tile>(_x, _y);
-
-	std::vector<std::pair<int, int>> todo;
+	std::vector<Tile*> todo;
 	
 	int randX = rand() % GRIDSIZE + 1;
 	int randY = rand() % GRIDSIZE + 1; 
 
-	todo.push_back(std::pair<int, int>(0, 0));
+	todo.push_back(myLab.Ref(0, 0));
 
 	while (!todo.empty())
 	{
-		std::pair<int, int> currentTile = todo.back();
+		Tile* currentTile = todo.back();
+		currentTile->visited = true; 
 
 		std::vector<EDirections> directions;
 
-		std::pair<int, int> nextTile = std::pair<int, int>(NULL, NULL);
+		Tile* nextTile = nullptr;
 		
 		while (directions.size() > 0) {
 			EDirections randomDirection = directions[rand() % directions.size() + 1];
-			int xInBounds = currentTile.first + GetDirectionX(directions[randomDirection]); 
-			int yInBounds = currentTile.second + GetDirectionY(directions[randomDirection]);
+			int xInBounds = currentTile->gridPosX + GetDirectionX(directions[randomDirection]); 
+			int yInBounds = currentTile->gridPosY + GetDirectionY(directions[randomDirection]);
 
 			if (xInBounds >= 0 && xInBounds < GRIDSIZE && yInBounds >= 0 && yInBounds < GRIDSIZE)
 			{
-				std::pair<int, int> tempTile(xInBounds, yInBounds);
-				if (!TileIsVisited(todo, tempTile)) 
+				Tile* tempTile(myLab.Ref(xInBounds, yInBounds));
+				if (!tempTile->visited) 
 				{
 					nextTile = tempTile;
 					break;
 				}
 			}
 
-			if (nextTile != std::pair<int, int>(NULL, NULL))
+			if (nextTile != nullptr)
 			{
 				todo.push_back(nextTile);
-
+				Carve(currentTile, nextTile, randomDirection);
+			}
+			else
+			{
+				todo.pop_back();
 			}
 		}
 	}
-	//for (int i = 0; i < _x; i++)
-	//	for (int j = 0; j < _y; j++)
-	//	{
-	//		myLab.Set(i, j, RandomNum());
-	//	}
 }
 
 void Labyrinth::RenderLabyrinth(int _x, int _y, SDL_Window *Window)
 {
-	//for (int i = 0; i < myLab.Width(); i++)
-	//	for (int j = 0; j < myLab.Height(); j++)
-	//	{
+	for (int i = 0; i < myLab.Width(); i++)
+		for (int j = 0; j < myLab.Height(); j++)
+		{
+
 	//		SDL_Rect WallTile;
 	//		WallTile.x = i * _x;
 	//		WallTile.y = j * _y;
@@ -71,31 +81,20 @@ void Labyrinth::RenderLabyrinth(int _x, int _y, SDL_Window *Window)
 	//		{
 	//			SDL_FillRect(SDL_GetWindowSurface(Window), &WallTile, ColourLabyrinth);
 	//		}
-	//	}
+		}
 }
 
-int Labyrinth::RandomNum()
+void Labyrinth::Carve(Tile* _source, Tile* _target, EDirections _direction)
 {
-	int randomval = rand() % 2;
-	return randomval;
+	_source->setDirection(_direction, _target);
+	_target->setDirection(GetOppositeDirection(_direction), _source);
+	_source->changed = true;
+	_target->changed = true;
 }
 
-bool Labyrinth::TileIsVisited(std::vector<std::pair<int, int>> _vectorOfTiles, std::pair<int, int> _pairToCheck)
+int Labyrinth::GetDirectionX(EDirections _direction)
 {
-	bool visited; 
-	if (std::find(_vectorOfTiles.begin(), _vectorOfTiles.end(), _pairToCheck) == _vectorOfTiles.end())
-	{
-		visited = true;
-	}
-	else {
-		visited = false;
-	}
-	return visited;
-}
-
-int Labyrinth::GetDirectionX(EDirections direction)
-{
-	switch (direction) {
+	switch (_direction) {
 	case LEFT:
 		return -1;
 		break;
@@ -103,13 +102,14 @@ int Labyrinth::GetDirectionX(EDirections direction)
 		return 1;
 		break;
 	default:
+		return NULL;
 		break;
 	}
 }
 
-int Labyrinth::GetDirectionY(EDirections direction)
+int Labyrinth::GetDirectionY(EDirections _direction)
 {
-	switch (direction) {
+	switch (_direction) {
 	case DOWN:
 		return 1;
 		break;
@@ -117,6 +117,34 @@ int Labyrinth::GetDirectionY(EDirections direction)
 		return -1;
 		break;
 	default:
+		return NULL;
 		break;
 	}
+}
+
+EDirections Labyrinth::GetOppositeDirection(EDirections _direction)
+{
+	switch (_direction) {
+	case DOWN:
+		return UP;
+		break;
+	case UP:
+		return DOWN;
+		break;
+	case LEFT:
+		return RIGHT;
+		break;
+	case RIGHT:
+		return LEFT;
+		break;
+	default:
+		return INVALID;
+		break;
+	}
+}
+
+int Labyrinth::RandomNum()
+{
+	int randomval = rand() % 2;
+	return randomval;
 }
